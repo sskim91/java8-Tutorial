@@ -2,12 +2,11 @@ package LambdaComparator;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
 import java.util.List;
 
-public class TestSorting {
+public class TestSortingLambda {
     public static void main(String[] args) {
+
         List<Developer> listDevs = getDevelopers();
 
         System.out.println("Before Sort");
@@ -15,20 +14,13 @@ public class TestSorting {
             System.out.println(developer);
         }
 
-        //sort by age
-        Collections.sort(listDevs, new Comparator<Developer>() {
-            @Override
-            public int compare(Developer o1, Developer o2) {
-                return o1.getAge() - o2.getAge();
-            }
-        });
-
-
         System.out.println("After Sort");
-        for (Developer developer : listDevs) {
-            System.out.println(developer);
-        }
 
+        //lambda here!
+        listDevs.sort((Developer o1, Developer o2)->o1.getAge()-o2.getAge());
+
+        //java 8 only, lambda also, to print the List
+        listDevs.forEach((developer)->System.out.println(developer));
     }
 
     private static List<Developer> getDevelopers() {
@@ -43,4 +35,5 @@ public class TestSorting {
         return result;
 
     }
+
 }
